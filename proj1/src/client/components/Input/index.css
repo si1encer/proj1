@@ -1,0 +1,9 @@
+.infoError,
+.formatError {
+  color: rgb(255, 0, 0);
+  font-weight: bolder;
+  border-color: rgb(255, 0, 0);
+}
+.userInput {
+  color: rgb(155 155 155);
+}
