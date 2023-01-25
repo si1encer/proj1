@@ -1,9 +1,14 @@
 .infoError,
 .formatError {
   color: rgb(255, 0, 0);
+  height: 30px;
   font-weight: bolder;
   border-color: rgb(255, 0, 0);
+  margin-bottom: 0.5rem;
 }
+
 .userInput {
+  height: 60px;
   color: rgb(155 155 155);
+  margin: 1rem 0;
 }

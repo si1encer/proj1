@@ -53,13 +53,13 @@ const Header = () => {
         return <Login setIsLogin={setIsLogin} setSignState={setSignState} />;
       }
       case "signOut": {
-        return <Logout />;
+        return <Logout setIsLogin={setIsLogin} setSignState={setSignState} />;
       }
       case "signUp": {
-        return <SignUp setSignState={setSignState} />;
+        return <SignUp setIsLogin={setIsLogin} setSignState={setSignState} />;
       }
       case "password": {
-        return <ChangePassword />;
+        return <ChangePassword setSignState={setSignState} />;
       }
       default: {
         return <>OOps, there's something wrong...</>;
@@ -89,6 +89,9 @@ const Header = () => {
             open={open}
             setVisible={() => {
               setOpen(false);
+              if (signState == "password") {
+                setSignState("signIn");
+              }
               //   setSignState("signIn");
             }}
           >

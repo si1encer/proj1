@@ -1,5 +1,9 @@
 import "./index.css";
 const Home = () => {
-  return <>this is home</>;
+  return (
+    <>
+      <div className="Home"></div>
+    </>
+  );
 };
 export default Home;

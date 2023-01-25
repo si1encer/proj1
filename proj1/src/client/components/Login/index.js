@@ -64,16 +64,17 @@ const Login = ({ setIsLogin, setSignState }) => {
           infoError={userPw.error}
           message={userPw.message}
         />
-        <div>
+        <div className="loginCheck">
           <Checkbox>remember me</Checkbox>
         </div>
-        <Button type="primary" onClick={handleUserInfo}>
+        <Button className="modalButton" type="primary" onClick={handleUserInfo}>
           Sign in
         </Button>
         <div className="loginFooter">
           <span>
-            Don't have an account?
+            Don't have an account?{" "}
             <label
+              className="modalLabel"
               onClick={() => {
                 setSignState("signUp");
               }}
@@ -82,6 +83,7 @@ const Login = ({ setIsLogin, setSignState }) => {
             </label>
           </span>
           <label
+            className="modalLabel"
             onClick={() => {
               setSignState("password");
             }}

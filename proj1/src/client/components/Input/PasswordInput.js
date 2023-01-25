@@ -1,5 +1,6 @@
 import { Input } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
+import "./index.css";
 const PasswordInput = ({
   onChange,
   value,
@@ -10,16 +11,17 @@ const PasswordInput = ({
   return (
     <div
       className={
-        !formatError ? (infoError ? "infoError" : "userInput") : "formatError"
+        // !formatError ? (infoError ? "infoError" : "userInput") : "formatError"
+        "userInput"
       }
     >
       Password
       <div>
         <Input.Password
+          style={{ margin: "0.2rem 0" }}
           className={
             !formatError ? (infoError ? "infoError" : null) : "formatError"
           }
-          // type={"password"}
           onChange={onChange}
           placeholder={"at least 6 characters"}
           value={value}
@@ -30,10 +32,14 @@ const PasswordInput = ({
       </div>
       {!formatError ? (
         infoError ? (
-          <div className="infoError">{message}</div>
+          <div style={{ textAlign: "right" }} className="infoError">
+            {message}
+          </div>
         ) : null
       ) : (
-        <div className="formatError">{message}</div>
+        <div style={{ textAlign: "right" }} className="formatError">
+          {message}
+        </div>
       )}
     </div>
   );

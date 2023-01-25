@@ -1,0 +1,31 @@
+.modalForm {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch; */
+  height: 250px;
+  width: 400px;
+  margin: 0 0.5rem 1rem 0.5rem;
+}
+.modal-title {
+  text-align: center;
+  font-weight: bolder;
+  font-size: x-large;
+  margin: 0.5rem 0 1rem 0;
+}
+.modalButton {
+  width: -webkit-fill-available;
+}
+.loginCheck,
+.loginFooter {
+  margin: 1rem 0;
+}
+.loginFooter {
+  display: flex;
+  justify-content: space-between;
+}
+.modalLabel {
+  color: rgb(0, 115, 255);
+  text-decoration: underline;
+  cursor: pointer;
+}

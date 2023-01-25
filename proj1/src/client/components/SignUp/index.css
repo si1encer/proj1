@@ -1,0 +1,20 @@
+.signupForm {
+  /* display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch; */
+  height: 220px;
+  width: 400px;
+  margin: 0 0.5rem 1rem 0.5rem;
+}
+.modalButton {
+  width: -webkit-fill-available;
+}
+.modalLabel {
+  color: rgb(0, 115, 255);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.signupFooter {
+  margin: 1rem 0;
+}

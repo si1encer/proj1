@@ -1,0 +1,12 @@
+.passwordForm {
+  height: 170px;
+  width: 400px;
+  margin: 0 0.5rem 1rem 0.5rem;
+}
+.passwordText {
+  text-align: center;
+}
+.pwButton {
+  width: -webkit-fill-available;
+  margin: 1rem 0;
+}
