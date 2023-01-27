@@ -53,7 +53,6 @@ const SignUp = ({ setIsLogin, setSignState, setOpen }) => {
         //user exist
         const mes = await res.json();
         const message = mes.message;
-        console.log(message);
         setUserEmail({
           ...userEmail,
           error: true,
@@ -63,10 +62,11 @@ const SignUp = ({ setIsLogin, setSignState, setOpen }) => {
       }
       case 200: {
         //succeed
+        // const mes = await res.json();
+        // localStorage.setItem("id", JSON.stringify(mes.returnId));
         const mes = await res.json();
         console.log(mes);
-        localStorage.setItem("id", JSON.stringify(mes.returnId));
-
+        localStorage.setItem("Token", JSON.stringify(mes.returnToken.Token));
         setIsLogin("login");
         setSignState("signOut");
         setOpen(false);

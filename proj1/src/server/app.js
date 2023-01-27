@@ -5,6 +5,10 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 const { v4: uuidv4 } = require("uuid");
 
+//jwt webtoken
+const jwt = require("jsonwebtoken");
+const config = require("./database/config/config");
+
 //connect to mongodb
 const connectMongoose = require("./database/connect");
 const userData = require("./database/model");
@@ -41,8 +45,11 @@ const validReq = (req = null, opt = "") => {
       // userData.findOne
       return;
     }
+    case "checkLogin": {
+      return req.body && req.body.Token;
+    }
     case "logout": {
-      return req.body && req.body.id;
+      return req.body && req.body.Token;
     }
     default:
       return false;
@@ -67,9 +74,11 @@ app.post("/addUser", async (req, res) => {
         });
         const newUser = await userInf.save();
         if (userInf === newUser) {
-          res
-            .status(200)
-            .json({ message: "succeed", returnId: { id: userInf.id } });
+          const userToken = jwt.sign({ id: userInf.id }, config.secret);
+          res.status(200).json({
+            message: "succeed",
+            returnToken: { Token: userToken },
+          });
           return;
         } else {
           res
@@ -85,13 +94,28 @@ app.post("/addUser", async (req, res) => {
 });
 
 //retrieve
-app.get("/allinfo", async (_, res) => {
-  const userDb = await userData.find({});
-  const userD = userDb.map(({ email, password, isLogin, id }) => {
-    return { email, password, isLogin, id };
-  });
-
-  return res.json(userD);
+app.post("/info", async (req, res) => {
+  if (validReq(req, "checkLogin")) {
+    try {
+      let decoded = jwt.verify(req.body.Token, config.secret);
+      const decodedId = decoded.id;
+      const checkedUser = await userData.findOne({ id: decodedId });
+      if (checkedUser != null) {
+        if (checkedUser.isLogin) {
+          res
+            .status(200)
+            .json({ email: checkedUser.email, password: checkedUser.password });
+          return;
+        }
+        res.status(201).json({ message: "already logout", error: "failed" });
+        return;
+      }
+    } catch (error) {
+      return res.status(404).json({ error: "failed", message: "token wrong" });
+    }
+  } else {
+    return res.status(404).json({ error: "failed", message: "token invald" });
+  }
 });
 //update
 //login
@@ -106,18 +130,33 @@ app.post("/login", async (req, res) => {
       //user exist email correct
       if (loginUser.password == req.body.password) {
         //password correct
-        const { modifiedCount } = await loginUser.updateOne({ isLogin: true });
-        if (modifiedCount <= 0) {
-          res
-            .status(400)
-            .json({ message: "login action failed", error: "failed" });
+        if (loginUser.isLogin) {
+          //if user already log in => return token but not update databse
+          let userToken = jwt.sign({ id: loginUser.id }, config.secret);
+          res.status(201).json({
+            message: "succeed",
+            returnToken: { Token: userToken },
+          });
+          return;
+        } else {
+          //user not log in before => return token and update database
+          const { modifiedCount } = await loginUser.updateOne({
+            isLogin: true,
+          });
+          if (modifiedCount <= 0) {
+            res
+              .status(400)
+              .json({ message: "login action failed", error: "failed" });
+            return;
+          }
+          //succeed action, return token
+          let userToken = jwt.sign({ id: loginUser.id }, config.secret);
+          res.status(201).json({
+            message: "succeed",
+            returnToken: { Token: userToken },
+          });
           return;
         }
-        res.status(201).json({
-          message: "succeed",
-          returnId: { id: loginUser.id },
-        });
-        return;
       } else {
         //pw incorrect
         res
@@ -135,7 +174,9 @@ app.post("/login", async (req, res) => {
 app.post("/logout", async (req, res) => {
   if (validReq(req, "logout")) {
     try {
-      const logoutUser = await userData.findOne({ id: req.body.id });
+      let decoded = jwt.verify(req.body.Token, config.secret);
+      const decodedId = decoded.id;
+      const logoutUser = await userData.findOne({ id: decodedId });
       if (logoutUser != null) {
         const { modifiedCount } = await logoutUser.updateOne({
           isLogin: false,
@@ -151,7 +192,9 @@ app.post("/logout", async (req, res) => {
         .status(404)
         .json({ message: "not found user to logout", error: "failed" });
     } catch (error) {
-      console.log(error);
+      return res
+        .status(400)
+        .json({ message: "No token found", error: "failed" });
     }
   } else {
     res
@@ -163,6 +206,28 @@ app.post("/logout", async (req, res) => {
 
 //delete
 
+//check user login state
+app.post("/checkLogin", async (req, res) => {
+  if (validReq(req, "checkLogin")) {
+    try {
+      let decoded = jwt.verify(req.body.Token, config.secret);
+      const decodedId = decoded.id;
+      const checkedUser = await userData.findOne({ id: decodedId });
+      if (checkedUser != null) {
+        if (checkedUser.isLogin) {
+          res.status(200).json({ message: "Login" });
+          return;
+        }
+        res.status(201).json({ message: "already logout", error: "failed" });
+        return;
+      }
+    } catch (error) {
+      return res.status(404).json({ error: "failed", message: "token wrong" });
+    }
+  } else {
+    return res.status(404).json({ error: "failed", message: "token invald" });
+  }
+});
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

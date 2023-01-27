@@ -11,9 +11,10 @@ const Logout = ({ setIsLogin, setSignState, setOpen }) => {
           type="primary"
           onClick={async () => {
             try {
-              let localId = localStorage.getItem("id");
-              const userID = localId == null ? false : JSON.parse(localId);
-              const res = await api.logoutApi({ id: userID.id });
+              let localToken = localStorage.getItem("Token");
+              const userToken =
+                localToken == null ? false : JSON.parse(localToken);
+              const res = await api.logoutApi({ Token: userToken });
               const mes = await res.json();
               console.log(mes);
               setIsLogin("logout");

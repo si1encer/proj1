@@ -36,8 +36,18 @@ const adderApi = async (userInfo) => {
   );
   return res;
 };
-const infoApi = async () => {
-  const res = await fetch("/allinfo");
+const infoApi = async (token) => {
+  const res = await fetch(
+    "/info",
+    fetchApiHelper({ method: "POST", data: token })
+  );
   return res;
 };
-export default { loginApi, logoutApi, adderApi, infoApi };
+const checkLoginApi = async (token) => {
+  const res = await fetch(
+    "/checkLogin",
+    fetchApiHelper({ method: "POST", data: token })
+  );
+  return res;
+};
+export default { loginApi, logoutApi, adderApi, infoApi, checkLoginApi };

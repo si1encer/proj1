@@ -68,8 +68,8 @@ const Login = ({ setIsLogin, setSignState, setOpen }) => {
       }
       case 201: {
         const mes = await res.json();
-        console.log(mes);
-        localStorage.setItem("id", JSON.stringify(mes.returnId));
+        // console.log(mes);
+        localStorage.setItem("Token", JSON.stringify(mes.returnToken.Token));
 
         setIsLogin("login");
         setSignState("signOut");

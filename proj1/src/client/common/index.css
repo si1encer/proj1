@@ -2,12 +2,18 @@
   color: aliceblue;
   text-decoration: none;
 }
+.signModule {
+  cursor: pointer;
+}
 .head1,
 .head2 {
   font-size: x-large;
 }
 .head3 {
   font-size: xx-small;
+}
+.footerIcon {
+  font-size: large;
 }
 .signButton {
   background-color: black;
@@ -28,7 +34,7 @@
     margin: 0;
   }
   .headSearch {
-    width: 400px;
+    width: 300px;
     margin: 0.5rem 2rem;
   }
   .Home {
@@ -53,10 +59,11 @@
 }
 @media screen and (max-width: 800px) {
   .Header {
-    /* display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    flex-direction: column-reverse; */
     background-color: rgb(15, 15, 15);
     padding: 0.5rem 2rem;
     color: white;
@@ -71,23 +78,17 @@
     margin: 0.2rem 0;
   }
   .headSearch {
-    width: -webkit-fill-available;
-    position: absolute;
-    top: 40px;
-    left: 0;
-    margin: 0.5rem 2rem;
+    flex: 1 0 100%;
+    order: 3;
   }
   .HeaderText {
-    position: absolute;
-    left: 0;
-    top: 10px;
-    margin-left: 2rem;
+    order: 1;
   }
   .HeaderIcon {
-    position: absolute;
-    right: 0;
-    top: 10px;
-    margin-right: 2rem;
+    order: 2;
+  }
+  .signButton {
+    display: none;
   }
   .Home {
     margin: 0;
@@ -107,5 +108,8 @@
     height: fit-content;
     padding: 1rem 1rem;
     margin: 0;
+  }
+  .footerIcons {
+    order: 3;
   }
 }
