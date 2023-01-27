@@ -6,17 +6,25 @@ import PasswordInput from "../Input/PasswordInput";
 import { Button, Checkbox } from "antd";
 import api from "../../api/api";
 
-const Login = ({ setIsLogin, setSignState, setOpen }) => {
-  const [userEmail, setUserEmail] = useState({
-    value: "",
-    error: false,
-    message: "",
-  });
-  const [userPw, setUserPw] = useState({
-    value: "",
-    error: false,
-    message: "",
-  });
+const Login = ({
+  userEmail,
+  setUserEmail,
+  userPw,
+  setUserPw,
+  setIsLogin,
+  setSignState,
+  setOpen,
+}) => {
+  // const [userEmail, setUserEmail] = useState({
+  //   value: "",
+  //   error: false,
+  //   message: "",
+  // });
+  // const [userPw, setUserPw] = useState({
+  //   value: "",
+  //   error: false,
+  //   message: "",
+  // });
   const validEmail = () => {
     if (!validator.isEmail(userEmail.value)) {
       setUserEmail({

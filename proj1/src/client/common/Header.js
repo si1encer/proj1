@@ -15,6 +15,18 @@ const Header = ({ isLogin, setIsLogin }) => {
   const [open, setOpen] = useState(false);
   //signState => signIn/signOut/signUp/password/messageSent
   const [signState, setSignState] = useState("signIn");
+  //user info
+  const [userEmail, setUserEmail] = useState({
+    value: "",
+    error: false,
+    message: "",
+  });
+  const [userPw, setUserPw] = useState({
+    value: "",
+    error: false,
+    message: "",
+  });
+
   const { Search } = Input;
   //check loacl token verify user login state
   useEffect(() => {
@@ -36,7 +48,11 @@ const Header = ({ isLogin, setIsLogin }) => {
     };
     checkState();
   }, []);
-
+  //clear error message when change modal
+  useEffect(() => {
+    setUserEmail({ ...userEmail, error: false });
+    setUserPw({ ...userPw, error: false });
+  }, [signState]);
   const signText = (flag = "logout") => {
     switch (flag) {
       case "logout": {
@@ -83,6 +99,10 @@ const Header = ({ isLogin, setIsLogin }) => {
             setIsLogin={setIsLogin}
             setSignState={setSignState}
             setOpen={setOpen}
+            userEmail={userEmail}
+            setUserEmail={setUserEmail}
+            userPw={userPw}
+            setUserPw={setUserPw}
           />
         );
       }
@@ -101,11 +121,21 @@ const Header = ({ isLogin, setIsLogin }) => {
             setIsLogin={setIsLogin}
             setSignState={setSignState}
             setOpen={setOpen}
+            userEmail={userEmail}
+            setUserEmail={setUserEmail}
+            userPw={userPw}
+            setUserPw={setUserPw}
           />
         );
       }
       case "password": {
-        return <ChangePassword setSignState={setSignState} />;
+        return (
+          <ChangePassword
+            setSignState={setSignState}
+            userEmail={userEmail}
+            setUserEmail={setUserEmail}
+          />
+        );
       }
       case "messageSent": {
         return <MessageSent setSignState={setSignState} />;

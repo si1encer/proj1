@@ -4,12 +4,12 @@ import { useState } from "react";
 import EmailInput from "../Input/EmailInput";
 import PasswordInput from "../Input/PasswordInput";
 import { Button, Checkbox } from "antd";
-const ChangePassword = ({ setSignState }) => {
-  const [userEmail, setUserEmail] = useState({
-    value: "",
-    error: false,
-    message: "",
-  });
+const ChangePassword = ({ userEmail, setUserEmail, setSignState }) => {
+  // const [userEmail, setUserEmail] = useState({
+  //   value: "",
+  //   error: false,
+  //   message: "",
+  // });
   const validEmail = () => {
     if (!validator.isEmail(userEmail.value)) {
       setUserEmail({
