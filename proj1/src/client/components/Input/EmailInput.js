@@ -27,12 +27,12 @@ const EmailInput = ({ onChange, value, formatError, infoError, message }) => {
       </div>
       {!formatError ? (
         infoError ? (
-          <div style={{ textAlign: "right" }} className="infoError">
+          <div id="messageEmail" className="infoError">
             {message}
           </div>
         ) : null
       ) : (
-        <div style={{ textAlign: "right" }} className="formatError">
+        <div id="messageEmail" className="formatError">
           {message}
         </div>
       )}

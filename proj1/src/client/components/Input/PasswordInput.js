@@ -32,12 +32,12 @@ const PasswordInput = ({
       </div>
       {!formatError ? (
         infoError ? (
-          <div style={{ textAlign: "right" }} className="infoError">
+          <div id="messagePw" className="infoError">
             {message}
           </div>
         ) : null
       ) : (
-        <div style={{ textAlign: "right" }} className="formatError">
+        <div id="messagePw" className="formatError">
           {message}
         </div>
       )}

@@ -4,14 +4,18 @@ import Login from "../components/Login";
 import Logout from "../components/Logout";
 import SignUp from "../components/SignUp";
 import MyModel from "../components/MyModal";
+import MessageSent from "../components/MessageSent";
+import { Input } from "antd";
+
 import "./index.css";
 const Header = () => {
   //isLogin=> logout/login/loading
   const [isLogin, setIsLogin] = useState("logout");
   //open => true/false
   const [open, setOpen] = useState(false);
-  //signState => signIn/signOut/signUp/password
+  //signState => signIn/signOut/signUp/password/messageSent
   const [signState, setSignState] = useState("signIn");
+  const { Search } = Input;
   const signText = (flag = "logout") => {
     switch (flag) {
       case "logout": {
@@ -42,6 +46,9 @@ const Header = () => {
       case "password": {
         return "Update your password";
       }
+      case "messageSent": {
+        return "";
+      }
       default: {
         return "Error";
       }
@@ -50,16 +57,37 @@ const Header = () => {
   const signModal = (flag = "signIn") => {
     switch (flag) {
       case "signIn": {
-        return <Login setIsLogin={setIsLogin} setSignState={setSignState} />;
+        return (
+          <Login
+            setIsLogin={setIsLogin}
+            setSignState={setSignState}
+            setOpen={setOpen}
+          />
+        );
       }
       case "signOut": {
-        return <Logout setIsLogin={setIsLogin} setSignState={setSignState} />;
+        return (
+          <Logout
+            setIsLogin={setIsLogin}
+            setSignState={setSignState}
+            setOpen={setOpen}
+          />
+        );
       }
       case "signUp": {
-        return <SignUp setIsLogin={setIsLogin} setSignState={setSignState} />;
+        return (
+          <SignUp
+            setIsLogin={setIsLogin}
+            setSignState={setSignState}
+            setOpen={setOpen}
+          />
+        );
       }
       case "password": {
         return <ChangePassword setSignState={setSignState} />;
+      }
+      case "messageSent": {
+        return <MessageSent setSignState={setSignState} />;
       }
       default: {
         return <>OOps, there's something wrong...</>;
@@ -69,14 +97,15 @@ const Header = () => {
   return (
     <>
       <div className="Header">
-        <span>Chuwa</span>
-        <span className="circleSearch">
-          <input className="headSearch" type={"text"} placeholder=" bonjour" />
-          <button>search</button>
+        <span className="HeaderText">
+          <span className="head1">M</span>
+          <span className="head2">enagement</span>
+          <span className="head3"> Chuwa</span>
         </span>
+        <Search placeholder="Search " className="headSearch"></Search>
 
-        <span>
-          <button
+        <span className="HeaderIcon">
+          <button className="signButton"
             onClick={() => {
               console.log(signState);
               setOpen(true);
@@ -89,7 +118,7 @@ const Header = () => {
             open={open}
             setVisible={() => {
               setOpen(false);
-              if (signState == "password") {
+              if (signState == "password" || signState == "messageSent") {
                 setSignState("signIn");
               }
               //   setSignState("signIn");

@@ -4,7 +4,9 @@ import { useState } from "react";
 import EmailInput from "../Input/EmailInput";
 import PasswordInput from "../Input/PasswordInput";
 import { Button, Checkbox } from "antd";
-const Login = ({ setIsLogin, setSignState }) => {
+import api from "../../api/api";
+
+const Login = ({ setIsLogin, setSignState, setOpen }) => {
   const [userEmail, setUserEmail] = useState({
     value: "",
     error: false,
@@ -37,13 +39,47 @@ const Login = ({ setIsLogin, setSignState }) => {
     if (!validEmail() || !validPassword()) {
       return;
     }
-    try {
-      //validate from back-end
-    } catch (e) {
-      return;
+
+    //validate from back-end
+    const res = await api.loginApi({
+      email: userEmail.value,
+      password: userPw.value,
+    });
+    switch (res.status) {
+      case 202: {
+        //password incorrect
+        const mes = await res.json();
+        const message = mes.message;
+        console.log(message);
+        setUserPw({ ...userPw, error: true, message: message });
+        return;
+      }
+      case 404: {
+        //user email doesnt exist
+        const mes = await res.json();
+        const message = mes.message;
+        console.log(message);
+        setUserEmail({
+          ...userEmail,
+          error: true,
+          message: message,
+        });
+        return;
+      }
+      case 201: {
+        const mes = await res.json();
+        console.log(mes);
+        localStorage.setItem("id", JSON.stringify(mes.returnId));
+
+        setIsLogin("login");
+        setSignState("signOut");
+        setOpen(false);
+        break;
+      }
+      default: {
+        console.log("sth wrong");
+      }
     }
-    setIsLogin("login");
-    setSignState("signOut");
   };
   return (
     <>

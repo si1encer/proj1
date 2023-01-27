@@ -1,3 +1,17 @@
 .modalButton {
   width: -webkit-fill-available;
 }
+.logoutForm {
+  height: 100px;
+  width: 400px;
+}
+.logoutText {
+  text-align: center;
+  margin: 1rem 0;
+  font-size: x-large;
+  font-weight: bolder;
+}
+@media screen and (max-width: 800px) {
+}
+@media screen and (min-width: 800px) {
+}

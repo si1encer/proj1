@@ -4,7 +4,9 @@ import { useState } from "react";
 import EmailInput from "../Input/EmailInput";
 import PasswordInput from "../Input/PasswordInput";
 import { Button, Checkbox } from "antd";
-const SignUp = ({ setIsLogin, setSignState }) => {
+import api from "../../api/api";
+
+const SignUp = ({ setIsLogin, setSignState, setOpen }) => {
   const [userEmail, setUserEmail] = useState({
     value: "",
     error: false,
@@ -42,8 +44,39 @@ const SignUp = ({ setIsLogin, setSignState }) => {
     } catch (e) {
       return;
     }
-    setIsLogin("login");
-    setSignState("signOut");
+    const res = await api.adderApi({
+      email: userEmail.value,
+      password: userPw.value,
+    });
+    switch (res.status) {
+      case 400: {
+        //user exist
+        const mes = await res.json();
+        const message = mes.message;
+        console.log(message);
+        setUserEmail({
+          ...userEmail,
+          error: true,
+          message: message,
+        });
+        return;
+      }
+      case 200: {
+        //succeed
+        const mes = await res.json();
+        console.log(mes);
+        localStorage.setItem("id", JSON.stringify(mes.returnId));
+
+        setIsLogin("login");
+        setSignState("signOut");
+        setOpen(false);
+        break;
+      }
+      default: {
+        console.log("sth go wrong!");
+        return;
+      }
+    }
   };
   return (
     <>

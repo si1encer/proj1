@@ -30,7 +30,7 @@ const ChangePassword = ({ setSignState }) => {
     } catch (e) {
       return;
     }
-    setSignState("signOut");
+    setSignState("messageSent");
   };
   return (
     <>

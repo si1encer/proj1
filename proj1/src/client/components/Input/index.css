@@ -1,14 +1,45 @@
-.infoError,
-.formatError {
-  color: rgb(255, 0, 0);
-  height: 30px;
-  font-weight: bolder;
-  border-color: rgb(255, 0, 0);
-  margin-bottom: 0.5rem;
-}
+@media screen and (max-width: 800px) {
+  .infoError,
+  .formatError {
+    color: rgb(255, 0, 0);
+    height: 30px;
+    font-weight: bolder;
+    border-color: rgb(255, 0, 0);
+    margin-bottom: 1rem;
+    /* text-align: center; */
+  }
 
-.userInput {
-  height: 60px;
-  color: rgb(155 155 155);
-  margin: 1rem 0;
+  .userInput {
+    height: 60px;
+    color: rgb(155 155 155);
+    margin: 1.5rem 0;
+    /* text-align: center; */
+  }
+  .normalInput {
+    width: -webkit-fill-available;
+  }
+  #messageEmail,
+  #messagePw {
+    text-align: right;
+  }
+}
+@media screen and (min-width: 800px) {
+  .infoError,
+  .formatError {
+    color: rgb(255, 0, 0);
+    height: 30px;
+    font-weight: bolder;
+    border-color: rgb(255, 0, 0);
+    margin-bottom: 0.5rem;
+  }
+
+  .userInput {
+    height: 60px;
+    color: rgb(155 155 155);
+    margin: 1rem 0;
+  }
+  #messageEmail,
+  #messagePw {
+    text-align: right;
+  }
 }

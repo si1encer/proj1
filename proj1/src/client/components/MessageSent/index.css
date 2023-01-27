@@ -1,0 +1,28 @@
+@media screen and (max-width: 800px) {
+  .messageForm {
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    margin: 0 0.5rem 1rem 0.5rem;
+  }
+  .messageText {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    text-align: center;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 800px) {
+  .messageForm {
+    height: 130px;
+    width: 400px;
+    margin: 0 0.5rem 1rem 0.5rem;
+  }
+  .messageText {
+    height: 100px;
+    width: 400px;
+    text-align: center;
+    margin: 2rem 2rem;
+  }
+}

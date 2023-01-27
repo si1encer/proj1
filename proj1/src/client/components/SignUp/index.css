@@ -1,12 +1,3 @@
-.signupForm {
-  /* display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: stretch; */
-  height: 220px;
-  width: 400px;
-  margin: 0 0.5rem 1rem 0.5rem;
-}
 .modalButton {
   width: -webkit-fill-available;
 }
@@ -17,4 +8,18 @@
 }
 .signupFooter {
   margin: 1rem 0;
+}
+@media screen and (max-width: 800px) {
+  .signupForm {
+    height: -webkit-fill-available;
+    width: auto;
+    margin: 0 0.5rem 1rem 0.5rem;
+  }
+}
+@media screen and (min-width: 800px) {
+  .signupForm {
+    height: 220px;
+    width: 400px;
+    margin: 0 0.5rem 1rem 0.5rem;
+  }
 }

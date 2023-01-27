@@ -1,5 +1,5 @@
 import { Modal } from "antd";
-
+import "./index.css";
 const MyModel = ({
   height = "fit-content",
   width = "fit-content",

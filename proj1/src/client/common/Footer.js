@@ -2,7 +2,7 @@ import "./index.css";
 const Footer = () => {
   return (
     <div className="Footer">
-      <span>All right reserved</span>
+      <span>{"  "}@2022 All Rights Reserved.</span>
       {/* <input className="headSearch" /> */}
       <a
         href="https://www.google.com/"
@@ -10,7 +10,7 @@ const Footer = () => {
         target="_blank"
         rel="noreferrer"
       >
-        Help
+        Contact us{"  "} Privacy policies {"  "}Help
       </a>
     </div>
   );
