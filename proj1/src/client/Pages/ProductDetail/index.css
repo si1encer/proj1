@@ -1,0 +1,136 @@
+@media screen and (min-width: 800px) {
+  /* */
+  .detailHead {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: left;
+    margin: 1rem 5rem;
+  }
+  .detailPage {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: 70%;
+    margin: 0 auto;
+  }
+  .proTextPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-left: 2rem;
+    width: 50%;
+  }
+  .proHead {
+    display: flex;
+    align-items: flex-end;
+  }
+  .proCategory {
+    font-size: small;
+    color: rgb(59, 59, 59);
+    margin-top: 1rem;
+  }
+  .productName {
+    font-size: xx-large;
+    color: rgb(104, 104, 104);
+    margin: 0.1em 0;
+  }
+  .prodPrice {
+    font-weight: bold;
+    font-size: xx-large;
+    color: black;
+    margin: 0.5em 0;
+    display: flex;
+    align-items: center;
+  }
+  .prodNumIcon {
+    background-color: pink;
+    font-size: medium;
+    border-radius: 20px;
+    font-weight: normal;
+    margin-left: 1rem;
+    padding: 0 0.5rem;
+  }
+  .productDescription {
+    color: rgb(59, 59, 59);
+    text-align: left;
+  }
+  .detailOperation {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    margin: 1em 0;
+  }
+  .detailOperation > .itemAdder {
+    width: 100%;
+  }
+  .detailOperation .itemAdder input {
+    height: 28px;
+  }
+  .detailOperation .itemAdder button {
+    height: 30px;
+  }
+}
+@media screen and (max-width: 800px) {
+  /* */
+  .detailHead {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    margin: 1rem 1rem;
+  }
+  .proTextPart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    /* margin-left: 2rem; */
+    width: 50%;
+    margin: auto;
+  }
+  .proCategory {
+    font-size: small;
+    color: rgb(59, 59, 59);
+    margin-top: 5px;
+  }
+  .productName {
+    font-size: slarge;
+    color: rgb(104, 104, 104);
+    margin: 5px 0;
+  }
+  .prodPrice {
+    font-weight: bold;
+    font-size: large;
+    color: black;
+    margin: 5px 0;
+    display: flex;
+    align-items: center;
+  }
+  .prodNumIcon {
+    background-color: pink;
+    font-size: small;
+    border-radius: 20px;
+    font-weight: normal;
+    margin-left: 5px;
+    padding: 0 5px;
+  }
+  .productDescription {
+    color: rgb(59, 59, 59);
+    text-align: left;
+  }
+  .detailOperation {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 5px 0;
+  }
+  .detailOperation > .itemAdder {
+    width: 100%;
+  }
+  .detailOperation .itemAdder input {
+    height: 28px;
+  }
+  .detailOperation .itemAdder button {
+    height: 30px;
+  }
+}

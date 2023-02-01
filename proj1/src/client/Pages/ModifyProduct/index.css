@@ -1,0 +1,127 @@
+@media screen and (min-width: 800px) {
+  /* */
+  .modifyProdForm input {
+    min-height: 30px;
+  }
+  .modifyProdForm {
+    display: flex;
+    width: 40vw;
+    height: 65vh;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: auto;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+  .modifyProdForm input {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #d9d9d9;
+    border-radius: 6px;
+  }
+  .modProdHead {
+    display: flex;
+    width: 50%;
+    margin: auto;
+    justify-content: space-between;
+  }
+  .modProdHead button {
+    align-self: center;
+  }
+  .modHeadText {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: left;
+    margin: 1rem 0rem;
+  }
+  .ProdName,
+  .ProdDesc,
+  .ProdPicv {
+    flex: 1 1 100%;
+  }
+  .ProdNum {
+    flex: 1 1 40%;
+  }
+  .ProdSrcl {
+    flex: 1 1 55%;
+  }
+
+  .ProdCate,
+  .ProdPrice {
+    flex: 1 0 45%;
+  }
+  .ProdName > *,
+  .ProdDesc > *,
+  .ProdPicv > *,
+  .ProdCate > *,
+  .ProdPrice > *,
+  .ProdNum > * {
+    width: -webkit-fill-available;
+    /* min-height: 32px; */
+  }
+  .ProdName,
+  .ProdCate,
+  .ProdNum,
+  .ProdSrcl,
+  .ProdPrice {
+    height: 76px;
+  }
+  .ProdPrice {
+    margin-left: 5px;
+  }
+  .ProdSrcFooter {
+    display: flex;
+    margin-left: 5px;
+  }
+  .ProdSrcFooter input {
+    flex: 1 1 50%;
+  }
+  .ProdPicv {
+    height: 20vh;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    border-style: dashed;
+  }
+  #pic1 {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 800px) {
+  /* */
+  .prodInput {
+    min-height: 30px;
+    width: 90%;
+  }
+  .ProdName,
+  .ProdCate,
+  .ProdSrcl,
+  .ProdNum,
+  .ProdDesc,
+  .ProdPrice {
+    width: 90%;
+    margin: 3px auto;
+  }
+  .ProdPicv {
+    min-height: 30vh;
+    width: 80%;
+    margin: 3px auto;
+    text-align: center;
+    border-style: dashed;
+  }
+  #prodInputBut {
+    width: 50%;
+    margin: 5px auto;
+    background-color: blue;
+    color: white;
+  }
+  #pic1 {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}

@@ -50,4 +50,40 @@ const checkLoginApi = async (token) => {
   );
   return res;
 };
-export default { loginApi, logoutApi, adderApi, infoApi, checkLoginApi };
+//product api
+const addProductApi = async (prodInfo) => {
+  const res = await fetch(
+    "/addProduct",
+    fetchApiHelper({ method: "POST", data: prodInfo })
+  );
+  return res;
+};
+const editProductApi = async (prodInfo) => {
+  const res = await fetch(
+    "/editProduct",
+    fetchApiHelper({ method: "POST", data: prodInfo })
+  );
+  return res;
+};
+const allProductsApi = async () => {
+  const res = await fetch("/allProducts");
+  return res;
+};
+const getProductByidApi = async (prodId) => {
+  const res = await fetch(
+    "/fetchProductById",
+    fetchApiHelper({ method: "POST", data: prodId })
+  );
+  return res;
+};
+export default {
+  loginApi,
+  logoutApi,
+  adderApi,
+  infoApi,
+  checkLoginApi,
+  addProductApi,
+  editProductApi,
+  allProductsApi,
+  getProductByidApi,
+};

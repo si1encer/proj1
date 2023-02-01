@@ -20,6 +20,10 @@
   color: white;
   cursor: pointer;
 }
+.shopcartIcon {
+  color: white;
+  font-size: large;
+}
 @media screen and (min-width: 800px) {
   .Header {
     display: flex;
@@ -92,7 +96,7 @@
   }
   .Home {
     margin: 0;
-    height: -webkit-fill-available;
+    height: fit-content;
     width: -webkit-fill-available;
   }
   .Footer {

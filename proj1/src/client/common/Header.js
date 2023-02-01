@@ -6,11 +6,17 @@ import SignUp from "../components/SignUp";
 import MyModel from "../components/MyModal";
 import MessageSent from "../components/MessageSent";
 import api from "../api/api";
-import { Input } from "antd";
+import { Badge, Input } from "antd";
 import { ShoppingCartOutlined, UserOutlined } from "@ant-design/icons";
 
 import "./index.css";
-const Header = ({ isLogin, setIsLogin }) => {
+const Header = ({
+  productStorage,
+  isLogin,
+  setIsLogin,
+  userCart,
+  setUserCart,
+}) => {
   //open => true/false
   const [open, setOpen] = useState(false);
   //signState => signIn/signOut/signUp/password/messageSent
@@ -50,9 +56,25 @@ const Header = ({ isLogin, setIsLogin }) => {
   }, []);
   //clear error message when change modal
   useEffect(() => {
-    setUserEmail({ ...userEmail, error: false });
-    setUserPw({ ...userPw, error: false });
+    setUserEmail((u) => {
+      return { ...u, error: false };
+    });
+    setUserPw((u) => {
+      return { ...u, error: false };
+    });
   }, [signState]);
+  const calculateTotalValue = () => {
+    let tempCart = [...userCart].map((e) => {
+      const pric = productStorage.find(({ id }) => {
+        return id === e.id;
+      });
+      const pric2 = pric ? pric.price : 0;
+      return { ...e, price: pric2 };
+    });
+    return tempCart.reduce((acc, cur) => {
+      return (acc += cur.purNum * cur.price);
+    }, 0);
+  };
   const signText = (flag = "logout") => {
     switch (flag) {
       case "logout": {
@@ -166,9 +188,20 @@ const Header = ({ isLogin, setIsLogin }) => {
             <UserOutlined />{" "}
             <button className="signButton">{signText(isLogin)}</button>{" "}
           </span>
-          <span>
+          <span
+            onClick={() => {
+              console.log(userCart);
+            }}
+          >
             &nbsp;&nbsp;
-            <ShoppingCartOutlined /> $00.00{" "}
+            <Badge
+              count={userCart.reduce((acc, cur) => {
+                return (acc = acc + cur.purNum);
+              }, 0)}
+            >
+              <ShoppingCartOutlined className="shopcartIcon" />
+            </Badge>{" "}
+            &nbsp;&nbsp;${calculateTotalValue().toFixed(2)}{" "}
           </span>
           <MyModel
             titleText={signTitle(signState)}
@@ -178,7 +211,6 @@ const Header = ({ isLogin, setIsLogin }) => {
               if (signState === "password" || signState === "messageSent") {
                 setSignState("signIn");
               }
-              //   setSignState("signIn");
             }}
           >
             {signModal(signState)}

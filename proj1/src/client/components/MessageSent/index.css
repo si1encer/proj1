@@ -1,5 +1,13 @@
+.messageIcon {
+  font-size: xxx-large;
+  text-align: center;
+}
 @media screen and (max-width: 800px) {
   .messageForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     height: -webkit-fill-available;
     width: -webkit-fill-available;
     margin: 0 0.5rem 1rem 0.5rem;
@@ -15,13 +23,17 @@
 }
 @media screen and (min-width: 800px) {
   .messageForm {
-    height: 130px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 300px;
     width: 400px;
     margin: 0 0.5rem 1rem 0.5rem;
   }
   .messageText {
-    height: 100px;
-    width: 400px;
+    /* height: 100px;
+    width: 400px; */
     text-align: center;
     margin: 2rem 2rem;
   }
